@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Welcome to ITIan System</h2>
+
+    <a href="{% url 'traineelist' %}">
+        <button>View Trainees</button>
+    </a>
+
+    <a href="{% url 'course_list' %}">
+        <button>View Courses</button>
+    </a>
+{% endblock %}
