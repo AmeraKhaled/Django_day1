@@ -1,29 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Trainee List</title>
-</head>
-<body>
-    <h1>Trainees</h1>
-    <table border="1">
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-        </tr>
-        {% for trainee in trainees %}
-        <tr>
-            <td>{{ trainee.name }}</td>
-            <td>{{ trainee.email }}</td>
-            <td>{{ trainee.phone }}</td>
-        </tr>
-        {% empty %}
-        <tr>
-            <td colspan="3">No trainees found.</td>
-        </tr>
-        {% endfor %}
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Trainee List</h2>
+    <table border="1" width = "100%">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>email</th>
+                <th>phone</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for trainee in trainees %}
+            <tr>
+                <td>{{ trainee.id }}</td>
+                <td>{{ trainee.name }}</td>
+                <td>{{ trainee.email }}</td>
+                <td>{{ trainee.phone }}</td>
+                <td>
+                    <a href="{% url 'update_trainee' trainee.id %}">Edit</a> | 
+                    <a href="{% url 'delete_trainee' trainee.id %}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
     </table>
-    <br>
-    <a href="{% url 'add_trainee' %}">Add Trainee</a>
-</body>
-</html>
+    <button><a href="{% url 'add_trainee' %}" class="btn btn-primary">Add Trainee</a></button>
+
+{% endblock %}

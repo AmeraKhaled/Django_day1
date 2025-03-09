@@ -5,7 +5,7 @@
 </head>
 <body>
     <h1>Add Trainee</h1>
-    <form method="post">
+    <form method="post" style="border: 2px solid black; padding: 20px; width: 50%; margin: auto;">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Submit</button>
