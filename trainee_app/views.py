@@ -32,6 +32,6 @@ def delete_trainee(request, id):
     if request.method == "POST":
         trainee.delete()
         return redirect("traineelist")
-    return render(request, "course/delete_trainee.html", {"trainee": trainee})
+    return render(request, "trainee/delete_trainee.html", {"trainee": trainee})
     
     

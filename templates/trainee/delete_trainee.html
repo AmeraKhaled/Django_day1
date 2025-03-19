@@ -4,11 +4,11 @@
     <title>Delete Trainee</title>
 </head>
 <body>
-    <h2>Are you sure you want to delete {{ trainee.first_name }} {{ trainee.last_name }}?</h2>
+    <h2>Are you sure you want to delete {{ trainee.name }}?</h2>
     <form method="post">
         {% csrf_token %}
         <button type="submit">Yes, Delete</button>
     </form>
-    <a href="{% url 'trainee_list' %}">Cancel</a>
+    <a href="{% url 'traineelist' %}">Cancel</a>
 </body>
 </html>
