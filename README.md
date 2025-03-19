@@ -4,17 +4,15 @@
 This is a Django web application for managing **trainees** and **courses**. The application allows users to:
 - View, add, update, and delete trainees
 - View, add, update, and delete courses
-- Navigate between trainees and courses using a homepage
-
----
+- User authentication (login & registration)
+- API endpoints for trainee and track management
 
 ## Features
 ✅ List all trainees and courses  
 ✅ Add new trainees and courses  
 ✅ Update and delete trainees/courses  
-✅ Simple UI with navigation  
-
----
+✅ Authentication system (login & registration)  
+✅ API for trainee and track management  
 
 ## Installation & Setup
 
@@ -53,11 +51,37 @@ Then open **http://127.0.0.1:8000/** in your browser.
 
 ## Project Structure
 ```
-/ITIan/              # Main Django project folder
-    ├── course_app/  # Course management app
-    ├── trainee_app/ # Trainee management app
-    ├── templates/   # HTML templates
-    ├── static/      # CSS, JavaScript, images
-    ├── manage.py    # Django command-line tool
+/ITIan/               # Main Django project folder
+    ├── accounts/     # Authentication app
+    ├── course_app/   # Course management app
+    ├── trainee_app/  # Trainee management app
+    ├── templates/    # HTML templates
+    ├── static/       # CSS, JavaScript, images
+    ├── api/          # API for trainee & track
+    ├── manage.py     # Django command-line tool
+```
+### Authentication
+The project includes authentication for login and registration.
+
+Login: ``` /accounts/login/```
+Register:``` /accounts/register/```
+Logout: ```/accounts/logout/```
+
+### API Endpoints
+## Trainee API (Class-Based Views)
+```GET /api/trainees/``` → List all trainees
+```POST /api/trainees/``` → Add a new trainee
+## Trainee API (Generic Views)
+```PUT /api/trainees/<id>/update/``` → Update a trainee
+```DELETE /api/trainees/<id>/delete/``` → Delete a trainee
+### API Setup
+The API uses Django REST Framework (DRF). To install:
+```bash
+pip install djangorestframework
+```
+Then, add 'rest_framework' to INSTALLED_APPS in settings.py.
+and then run
+```bash 
+python manage.py runserver
 ```
 
