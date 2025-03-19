@@ -1,5 +1,5 @@
 from django.db import models
-from course_app.models import Course  # Import Course model
+from course_app.models import Course  
 
 class Trainee(models.Model):
     name = models.CharField(max_length=255)

@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'trainee_app',
     'course_app',
     "accounts",
-     'django_extensions',
+    'django_extensions',
+    'rest_framework',
+
 ]
 
 MIDDLEWARE = [
