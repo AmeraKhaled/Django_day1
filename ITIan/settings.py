@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'trainee_app',
     'course_app',
+    "accounts",
+     'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -128,3 +130,8 @@ STATICFILES_DIRS = [BASE_DIR / "statics"]
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+LOGIN_URL = "/accounts/login/"
+LOGIN_REDIRECT_URL = "traineelist"
+LOGOUT_REDIRECT_URL = "login"

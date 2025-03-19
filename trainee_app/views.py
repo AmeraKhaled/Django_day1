@@ -1,37 +1,32 @@
-from django.shortcuts import  render, get_object_or_404, redirect
+from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, DeleteView, UpdateView, CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Trainee
-from .forms import TraineeForm
-    
-def trainee_list(request):
-    trainees = Trainee.objects.all()
-    return render(request, "trainee/trainee_list.html", {"trainees": trainees})
 
-def add_trainee(request):
-    if request.method == "POST":
-        form = TraineeForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect("traineelist")  
-    else:
-        form = TraineeForm()
-    return render(request, "trainee/add_trainee.html", {"form": form})
+class TraineeListView(LoginRequiredMixin, ListView):
+    model = Trainee
+    template_name = "trainee/trainee_list.html"
+    context_object_name = "trainees"
 
-def update_trainee(request, id):
-    trainee = get_object_or_404(Trainee, id=id)
-    if request.method == "POST":
-        form = TraineeForm(request.POST, instance=trainee)
-        if form.is_valid():
-            form.save()
-            return redirect("traineelist") 
-    else:
-        form = TraineeForm(instance=trainee)  
-    return render(request, "trainee/update_trainee.html", {"form": form})
+# class TraineeDetailView(LoginRequiredMixin, DetailView):
+#     model = Trainee
+#     template_name = "trainee/trainee_detail.html"
+#     context_object_name = "trainee"
 
-def delete_trainee(request, id):
-    trainee = get_object_or_404(Trainee, id=id)
-    if request.method == "POST":
-        trainee.delete()
-        return redirect("traineelist")
-    return render(request, "trainee/delete_trainee.html", {"trainee": trainee})
-    
-    
+class TraineeDeleteView(LoginRequiredMixin, DeleteView):
+    model = Trainee
+    template_name = "trainee/delete_trainee.html"
+    success_url = reverse_lazy("traineelist")
+
+class TraineeCreateView(LoginRequiredMixin, CreateView):
+    model = Trainee
+    fields = ["name", "email", "phone", "course"]
+    template_name = "trainee/trainee_form.html"
+    success_url = reverse_lazy("traineelist")
+
+class TraineeUpdateView(LoginRequiredMixin, UpdateView):
+    model = Trainee
+    fields = ["name", "email", "phone", "course"]
+    template_name = "trainee/trainee_form.html"
+    success_url = reverse_lazy("traineelist")

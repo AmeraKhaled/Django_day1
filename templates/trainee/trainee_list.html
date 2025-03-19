@@ -2,7 +2,7 @@
 
 {% block content %}
 <h2>Trainee List</h2>
-<a href="{% url 'add_trainee' %}">Add Trainee</a>
+<a href="{% url 'trainee_create' %}">Add Trainee</a>
 <table border="1" width = "100%">
     <tr>
         <th>Name</th>
@@ -18,8 +18,8 @@
         <td>{{ trainee.phone }}</td>
         <td>{{ trainee.course.name }}</td>
         <td>
-            <a href="{% url 'update_trainee' trainee.id %}">Edit</a> |
-            <a href="{% url 'delete_trainee' trainee.id %}">Delete</a>
+            <a href="{% url 'trainee_update' trainee.id %}">Edit</a> |
+            <a href="{% url 'trainee_delete' trainee.id %}">Delete</a>
         </td>
     </tr>
     {% endfor %}
